@@ -1,8 +1,24 @@
 # BNETIA Demo
 
-Demo operativa de BNETIA preparada para desplegar en Vercel. Replica la estructura de un sistema real de pedidos mayoristas con frontend, API, controladores, rutas, middlewares, modelos y servicios, pero trabaja íntegramente con datos ficticios en memoria.
+Demo pública de BNETIA, una aplicación de pedidos mayoristas que corre en producción para cliente. Esta versión está preparada para enseñar el producto y su arquitectura sin exponer datos reales, credenciales, base de datos ni integraciones privadas.
 
-El objetivo es que cualquier persona pueda entrar, probar el flujo completo y entender cómo estaría organizado el producto en producción sin necesitar MySQL, WhatsApp real, credenciales ni servicios externos.
+Replica la estructura del sistema real con frontend, API, controladores, rutas, middlewares, modelos y servicios, pero trabaja íntegramente con datos ficticios en memoria.
+
+El objetivo es que cualquier persona pueda entrar, probar el flujo completo y entender cómo está planteada la aplicación de producción sin necesitar MySQL, WhatsApp real, credenciales ni servicios externos.
+
+## Contexto para entrevistas
+
+Este repositorio está pensado como demo pública de una aplicación real desplegada para cliente.
+
+Respuesta corta para formularios tipo _"Show us 1-2 things you've built and shipped to production"_:
+
+```text
+BNETIA Orders Platform — public demo of a production client app: [repo link] / [live demo link]
+It manages B2B meat orders end-to-end: product catalogue, cart, admin validation, users, Excel price updates, allowed WhatsApp phones, and a WhatsApp/AI-assisted order flow.
+I built the Vue/Vuetify frontend and Express-style backend architecture; the hardest technical decision was turning the real DB/WhatsApp-dependent system into a safe public Vercel demo while preserving the production routes, controllers, services and models.
+```
+
+Más detalle en [docs/CASE_STUDY.md](./docs/CASE_STUDY.md).
 
 ## Resumen
 
@@ -62,6 +78,7 @@ bnetia-demo-vercel/
 - [Arquitectura](./docs/ARCHITECTURE.md)
 - [API Mock](./docs/API.md)
 - [Guion de Demo](./docs/DEMO_SCRIPT.md)
+- [Case Study / Interview Answer](./docs/CASE_STUDY.md)
 - [Despliegue en Vercel](./docs/DEPLOYMENT.md)
 - [Datos Mock](./docs/MOCK_DATA.md)
 
