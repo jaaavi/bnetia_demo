@@ -124,12 +124,12 @@ Qué explicar:
 Abre el repo y enseña:
 
 ```text
-api/routes
-api/controllers
-api/models
-api/services
-api/middlewares
-api/data/mockStore.js
+server/routes
+server/controllers
+server/models
+server/services
+server/middlewares
+server/data/mockStore.js
 ```
 
 Frase útil:

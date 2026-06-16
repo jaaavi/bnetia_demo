@@ -13,7 +13,7 @@ Vercel Rewrite /api/*
   ↓
 api/index.js
   ↓
-routes → middlewares → controllers → services/models → mockStore
+server/routes → server/middlewares → server/controllers → server/services/models → mockStore
 ```
 
 ## Frontend
@@ -36,7 +36,7 @@ Si la API no está disponible durante desarrollo local con Vite puro, usa semill
 
 ## API
 
-La API vive en `api/` y usa Express.
+La API usa Express. En Vercel la única función serverless es `api/index.js`; el resto de capas viven en `server/`.
 
 `api/index.js` registra:
 
@@ -51,7 +51,7 @@ La API vive en `api/` y usa Express.
 
 ## Rutas
 
-Las rutas están en `api/routes/`.
+Las rutas están en `server/routes/`.
 
 Cada archivo agrupa un área funcional:
 
@@ -66,7 +66,7 @@ Cada archivo agrupa un área funcional:
 
 ## Controladores
 
-Los controladores están en `api/controllers/`.
+Los controladores están en `server/controllers/`.
 
 Su función es:
 
@@ -78,12 +78,12 @@ No contienen acceso directo a base de datos.
 
 ## Modelos
 
-Los modelos están en `api/models/`.
+Los modelos están en `server/models/`.
 
 En producción serían responsables de hablar con MySQL o un ORM. En esta demo leen y modifican arrays en memoria desde:
 
 ```text
-api/data/mockStore.js
+server/data/mockStore.js
 ```
 
 Modelos incluidos:
@@ -95,7 +95,7 @@ Modelos incluidos:
 
 ## Servicios
 
-Los servicios están en `api/services/`.
+Los servicios están en `server/services/`.
 
 Simulan integraciones que en producción serían externas:
 
@@ -105,7 +105,7 @@ Simulan integraciones que en producción serían externas:
 
 ## Middlewares
 
-Los middlewares están en `api/middlewares/`.
+Los middlewares están en `server/middlewares/`.
 
 - `authMiddleware.js`: inyecta un usuario admin demo.
 - `isAdmin`: protege rutas administrativas.
@@ -113,7 +113,7 @@ Los middlewares están en `api/middlewares/`.
 
 ## Estado en memoria
 
-El estado vive en `api/data/mockStore.js`.
+El estado vive en `server/data/mockStore.js`.
 
 Incluye:
 
@@ -124,6 +124,22 @@ Incluye:
 - Estado de WhatsApp.
 
 En un entorno serverless como Vercel, este estado puede reiniciarse entre ejecuciones. Para una demo esto es deseable porque evita persistencia accidental.
+
+## Vercel Hobby
+
+Vercel cuenta los archivos dentro de `api/` como funciones serverless. Para no superar el límite del plan Hobby, esta demo deja solo:
+
+```text
+api/index.js
+```
+
+El resto del backend mock vive en:
+
+```text
+server/
+```
+
+Así se mantiene la estructura de producción sin crear más funciones.
 
 ## Correspondencia con producción
 

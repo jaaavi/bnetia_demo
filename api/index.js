@@ -1,14 +1,14 @@
 import express from 'express';
 import cors from 'cors';
-import authRoutes from './routes/authRoutes.js';
-import ordersRoutes from './routes/ordersRoutes.js';
-import productsRoutes from './routes/productsRoutes.js';
-import usersRoutes from './routes/usersRoutes.js';
-import allowedPhonesRoutes from './routes/allowedPhonesRoutes.js';
-import whatsappRoutes from './routes/whatsappRoutes.js';
-import aiOrderRoutes from './routes/aiOrderRoutes.js';
-import demoRoutes from './routes/demoRoutes.js';
-import { errorHandler } from './middlewares/errorHandler.js';
+import authRoutes from '../server/routes/authRoutes.js';
+import ordersRoutes from '../server/routes/ordersRoutes.js';
+import productsRoutes from '../server/routes/productsRoutes.js';
+import usersRoutes from '../server/routes/usersRoutes.js';
+import allowedPhonesRoutes from '../server/routes/allowedPhonesRoutes.js';
+import whatsappRoutes from '../server/routes/whatsappRoutes.js';
+import aiOrderRoutes from '../server/routes/aiOrderRoutes.js';
+import demoRoutes from '../server/routes/demoRoutes.js';
+import { errorHandler } from '../server/middlewares/errorHandler.js';
 
 const app = express();
 

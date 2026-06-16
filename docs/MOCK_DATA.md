@@ -3,7 +3,7 @@
 Todos los datos ficticios iniciales están en:
 
 ```text
-api/data/mockStore.js
+server/data/mockStore.js
 ```
 
 ## Productos
@@ -101,7 +101,7 @@ Usa el botón `Reiniciar datos`.
 
 ## Cambiar los datos iniciales
 
-Edita `api/data/mockStore.js`.
+Edita `server/data/mockStore.js`.
 
 Recomendación:
 

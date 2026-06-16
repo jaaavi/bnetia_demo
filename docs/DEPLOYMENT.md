@@ -73,6 +73,7 @@ curl http://localhost:7099/api/products/with-prices
 Sube:
 
 - `api/`
+- `server/`
 - `docs/`
 - `public/`
 - `src/`
@@ -107,3 +108,19 @@ Esto significa:
 - No hay IA externa real.
 
 Estas limitaciones son intencionales para mantener la demo segura, gratuita y fácil de desplegar.
+
+## Límite de Serverless Functions en Hobby
+
+El plan Hobby de Vercel limita el número de funciones serverless. Por eso esta demo usa una única función:
+
+```text
+api/index.js
+```
+
+La arquitectura backend mock vive fuera de `api/`:
+
+```text
+server/
+```
+
+No muevas `server/routes`, `server/controllers`, `server/models`, `server/services` ni `server/middlewares` dentro de `api/`, porque Vercel podría contarlos como funciones adicionales.

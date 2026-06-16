@@ -37,15 +37,16 @@ Incluye:
 ```text
 bnetia-demo-vercel/
 ├── api/
+│   └── index.js
+├── docs/
+├── public/
+├── server/
 │   ├── controllers/
 │   ├── data/
 │   ├── middlewares/
 │   ├── models/
 │   ├── routes/
-│   ├── services/
-│   └── index.js
-├── docs/
-├── public/
+│   └── services/
 ├── src/
 │   ├── App.vue
 │   ├── main.ts
@@ -177,8 +178,10 @@ La documentación completa está en [docs/API.md](./docs/API.md).
 Todo el estado inicial vive en:
 
 ```text
-api/data/mockStore.js
+server/data/mockStore.js
 ```
+
+Nota para Vercel Hobby: solo `api/index.js` está dentro de `api/` para que Vercel cree una única Serverless Function. La arquitectura de backend se mantiene en `server/` y se importa desde esa función.
 
 La demo incluye productos, usuarios, pedidos y teléfonos de ejemplo. No se guarda nada en base de datos. En Vercel, el estado en memoria puede reiniciarse entre ejecuciones serverless, lo cual es intencional para una demo segura.
 
