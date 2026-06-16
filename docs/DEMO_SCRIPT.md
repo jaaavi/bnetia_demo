@@ -1,127 +1,127 @@
-# Guion de Demo
+# Demo Script
 
-Este guion está pensado para enseñar el proyecto en una entrevista, revisión técnica o presentación rápida.
+This script is designed for presenting the project during an interview, technical review, or quick product walkthrough.
 
-## 1. Entrada al producto
+## 1. Product Entry
 
-Abre la app desplegada en Vercel o en local.
+Open the app deployed on Vercel or running locally.
 
-Mensaje recomendado:
+Recommended message:
 
-> Esta demo replica el flujo de BNETIA con datos ficticios. No necesita base de datos ni WhatsApp real, pero conserva la estructura de frontend y backend que usaría en producción.
+> This demo reproduces the BNETIA workflow with fictitious data. It does not need a database or a real WhatsApp session, but it keeps the frontend and backend structure I would use in production.
 
-## 2. Hacer pedido
+## 2. Place an Order
 
-En la pestaña `Hacer pedido`:
+In the order creation tab (`Hacer pedido` in the current UI):
 
-1. Busca `solomillo`.
-2. Añade cajas a uno o varios productos.
-3. Cambia transporte.
-4. Cambia semana.
-5. Confirma pedido.
+1. Search for `solomillo`.
+2. Add boxes to one or more products.
+3. Change transport.
+4. Change week number.
+5. Confirm the order.
 
-Qué mostrar:
+What to show:
 
-- Catálogo.
-- Búsqueda.
-- Carrito.
-- Creación de pedido pendiente.
+- Catalogue.
+- Search.
+- Cart.
+- Pending order creation.
 
-## 3. Pedidos
+## 3. Orders
 
-En la pestaña `Pedidos`:
+In the orders tab (`Pedidos` in the current UI):
 
-1. Filtra por `Pendiente`.
-2. Filtra por `WhatsApp` o `Panel`.
-3. Edita precio de un pedido pendiente.
-4. Exporta Excel.
+1. Filter by `Pendiente`.
+2. Filter by `WhatsApp` or `Panel`.
+3. Edit the price of a pending order.
+4. Export Excel.
 
-Qué mostrar:
+What to show:
 
-- Estados.
-- Origen de pedido.
-- Exportación real con `xlsx`.
+- Order statuses.
+- Order origin.
+- Real export using `xlsx`.
 
-## 4. Administración
+## 4. Administration
 
-En `Administrar > Validar pedidos`:
+In the admin order validation section (`Administrar > Validar pedidos` in the current UI):
 
-1. Valida un pedido.
-2. Rechaza otro si existe.
-3. Edita precio antes de validar.
+1. Validate an order.
+2. Reject another one if available.
+3. Edit price before validation.
 
-Qué mostrar:
+What to show:
 
-- Flujo administrativo.
-- Separación entre pedido pendiente y validado.
+- Administrative workflow.
+- Separation between pending and validated orders.
 
-## 5. Productos
+## 5. Products
 
-En `Administrar > Productos`:
+In the admin products section (`Administrar > Productos` in the current UI):
 
-1. Añade un producto.
-2. Edita su precio.
-3. Elimina un producto.
-4. Usa `Actualizar precios` para simular carga de Excel.
+1. Add a product.
+2. Edit its price.
+3. Delete a product.
+4. Use the price update action (`Actualizar precios` in the current UI) to simulate an Excel upload.
 
-Qué explicar:
+What to explain:
 
-- En producción esta parte conectaría con la subida real de Excel.
-- En la demo se actualizan precios en memoria.
+- In production, this area would connect to the real Excel upload flow.
+- In the demo, prices are updated in memory.
 
-## 6. Usuarios
+## 6. Users
 
-En `Administrar > Usuarios`:
+In the admin users section (`Administrar > Usuarios` in the current UI):
 
-1. Crea un usuario.
-2. Cambia rol.
-3. Simula reset de contraseña.
-4. Elimina usuario.
+1. Create a user.
+2. Change their role.
+3. Simulate password reset.
+4. Delete a user.
 
-Qué explicar:
+What to explain:
 
-- La API mock mantiene rutas y controladores reales.
-- La autenticación está simplificada con usuario admin demo.
+- The mock API keeps realistic routes and controllers.
+- Authentication is simplified with a demo admin user.
 
-## 7. Teléfonos permitidos
+## 7. Allowed Phones
 
-En `Administrar > Teléfonos`:
+In the admin allowed phones section (`Administrar > Teléfonos` in the current UI):
 
-1. Añade un número con prefijo internacional.
-2. Activa/desactiva un teléfono.
-3. Elimina un teléfono.
+1. Add a number with international prefix.
+2. Activate/deactivate a phone.
+3. Delete a phone.
 
-Qué explicar:
+What to explain:
 
-- Esto representa la whitelist usada por el bot de WhatsApp.
+- This represents the allowlist used by the WhatsApp bot.
 
 ## 8. WhatsApp Bot
 
-En `Administrar > WhatsApp bot`:
+In the admin WhatsApp Bot section (`Administrar > WhatsApp bot` in the current UI):
 
-1. Conecta sesión.
-2. Muestra QR demo.
-3. Procesa mensaje entrante.
+1. Connect session.
+2. Show demo QR.
+3. Process an incoming message.
 
-Mensaje de ejemplo:
+Example message:
 
 ```text
-Buenos días, semana 26:
-30 cajas solomillo +2,4 vaca
-18 cajas morcillo anojo
-12 cajas carne picada especial vaca
-Transporte en camión
+Good morning, week 26:
+30 boxes solomillo +2,4 cow
+18 boxes morcillo yearling
+12 boxes carne picada especial cow
+Transport by truck
 ```
 
-Qué explicar:
+What to explain:
 
-- El servicio mock interpreta el mensaje.
-- Se genera un pedido pendiente.
-- El admin lo valida después.
+- The mock service interprets the message.
+- A pending order is generated.
+- The admin validates it afterwards.
 
-## 9. Arquitectura
+## 9. Architecture
 
-Abre el repo y enseña:
+Open the repository and show:
 
 ```text
 server/routes
@@ -132,16 +132,16 @@ server/middlewares
 server/data/mockStore.js
 ```
 
-Frase útil:
+Useful sentence:
 
-> La demo no es solo una pantalla estática: conserva la forma de una API real, con capas separadas. La diferencia es que los modelos apuntan a memoria en lugar de MySQL.
+> The demo is not just a static screen: it keeps the shape of a real API with separated layers. The difference is that models point to memory instead of MySQL.
 
-## 10. Cierre
+## 10. Closing
 
-Puntos fuertes para remarcar:
+Strong points to highlight:
 
-- Deploy simple en Vercel.
-- Sin secretos ni credenciales.
-- Datos ficticios seguros.
-- Arquitectura cercana a producción.
-- Flujo completo navegable.
+- Simple Vercel deployment.
+- No secrets or credentials.
+- Safe fictitious data.
+- Production-like architecture.
+- Complete navigable workflow.

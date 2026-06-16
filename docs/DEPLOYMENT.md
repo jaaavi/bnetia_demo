@@ -1,29 +1,29 @@
-# Despliegue en Vercel
+# Vercel Deployment
 
-Esta demo está preparada para desplegarse como proyecto independiente en Vercel.
+This demo is prepared to be deployed as an independent Vercel project.
 
-## Requisitos
+## Requirements
 
-- Node.js 20 o superior recomendado.
-- Cuenta de Vercel.
-- Repositorio en GitHub, GitLab o Bitbucket.
+- Node.js 20 or higher recommended.
+- Vercel account.
+- Repository on GitHub, GitLab, or Bitbucket.
 
-## Configuración de Vercel
+## Vercel Configuration
 
-Al importar el proyecto:
+When importing the project:
 
-| Campo | Valor |
+| Field | Value |
 | --- | --- |
 | Framework Preset | Vite |
 | Install Command | `npm install` |
 | Build Command | `npm run build` |
 | Output Directory | `dist` |
 
-No hacen falta variables de entorno.
+No environment variables are required.
 
-## Rutas
+## Routes
 
-`vercel.json` define:
+`vercel.json` defines:
 
 ```json
 {
@@ -40,37 +40,37 @@ No hacen falta variables de entorno.
 }
 ```
 
-Esto permite:
+This allows:
 
-- Servir la aplicación Vue como SPA.
-- Servir la API mock en `/api/*`.
+- Serving the Vue application as a SPA.
+- Serving the mock API under `/api/*`.
 
-## Build local
+## Local Build
 
-Antes de subir:
+Before deploying:
 
 ```bash
 npm install
 npm run build
 ```
 
-## Prueba local de la API
+## Local API Test
 
-Vite por sí solo no ejecuta la función serverless de Vercel. Para probar la API manualmente:
+Plain Vite does not execute Vercel serverless functions. To test the API manually:
 
 ```bash
 node -e "import app from './api/index.js'; app.listen(7099, () => console.log('API demo http://localhost:7099/api'))"
 ```
 
-Luego:
+Then:
 
 ```bash
 curl http://localhost:7099/api/products/with-prices
 ```
 
-## Qué subir a GitHub
+## What to Push to GitHub
 
-Sube:
+Push:
 
 - `api/`
 - `server/`
@@ -86,41 +86,41 @@ Sube:
 - `README.md`
 - `.gitignore`
 
-No subas:
+Do not push:
 
 - `node_modules/`
 - `dist/`
 - `.vercel/`
 - `.env`
 
-La `.gitignore` ya está preparada para esto.
+The `.gitignore` file is already configured for this.
 
-## Limitaciones en Vercel
+## Vercel Limitations
 
-La demo usa memoria dentro de funciones serverless.
+The demo uses memory inside serverless functions.
 
-Esto significa:
+This means:
 
-- Los datos pueden reiniciarse entre ejecuciones.
-- No hay persistencia real.
-- No hay autenticación real.
-- No hay WhatsApp real.
-- No hay IA externa real.
+- Data may reset between executions.
+- There is no real persistence.
+- There is no real authentication.
+- There is no real WhatsApp connection.
+- There is no external AI service.
 
-Estas limitaciones son intencionales para mantener la demo segura, gratuita y fácil de desplegar.
+These limitations are intentional to keep the demo safe, free to deploy, and easy to review.
 
-## Límite de Serverless Functions en Hobby
+## Hobby Plan Serverless Function Limit
 
-El plan Hobby de Vercel limita el número de funciones serverless. Por eso esta demo usa una única función:
+The Vercel Hobby plan limits the number of serverless functions. This demo therefore uses a single function:
 
 ```text
 api/index.js
 ```
 
-La arquitectura backend mock vive fuera de `api/`:
+The mock backend architecture lives outside `api/`:
 
 ```text
 server/
 ```
 
-No muevas `server/routes`, `server/controllers`, `server/models`, `server/services` ni `server/middlewares` dentro de `api/`, porque Vercel podría contarlos como funciones adicionales.
+Do not move `server/routes`, `server/controllers`, `server/models`, `server/services`, or `server/middlewares` into `api/`, because Vercel may count them as additional serverless functions.

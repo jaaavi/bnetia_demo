@@ -1,14 +1,14 @@
-# Datos Mock
+# Mock Data
 
-Todos los datos ficticios iniciales están en:
+All initial fictitious data lives in:
 
 ```text
 server/data/mockStore.js
 ```
 
-## Productos
+## Products
 
-Ejemplos incluidos:
+Included examples:
 
 - Solomillo +2,4
 - Solomillo +2
@@ -19,7 +19,7 @@ Ejemplos incluidos:
 - Aguja
 - Carrillera
 
-Cada producto incluye:
+Each product includes:
 
 - `id`
 - `priceId`
@@ -28,15 +28,15 @@ Cada producto incluye:
 - `type`
 - `price`
 
-## Usuarios
+## Users
 
-Usuarios iniciales:
+Initial users:
 
 - Admin Demo
 - Carnicería La Plaza
 - Restaurante El Mercado
 
-Campos:
+Fields:
 
 - `id`
 - `name`
@@ -44,14 +44,14 @@ Campos:
 - `role`
 - `phone`
 
-## Pedidos
+## Orders
 
-Pedidos iniciales:
+Initial orders:
 
-- Un pedido pendiente de WhatsApp.
-- Un pedido entregado creado desde panel.
+- One pending WhatsApp order.
+- One delivered order created from the panel.
 
-Campos principales:
+Main fields:
 
 - `id`
 - `user_id`
@@ -65,11 +65,11 @@ Campos principales:
 - `total_price`
 - `items`
 
-## Teléfonos permitidos
+## Allowed Phones
 
-Incluye números ficticios con estados activo/inactivo.
+Includes fictitious numbers with active/inactive states.
 
-Campos:
+Fields:
 
 - `id`
 - `phone_number`
@@ -77,7 +77,7 @@ Campos:
 - `is_active`
 - `created_at`
 
-## Estado WhatsApp
+## WhatsApp State
 
 ```js
 {
@@ -87,25 +87,25 @@ Campos:
 }
 ```
 
-## Reiniciar datos
+## Reset Data
 
-Desde API:
+From the API:
 
 ```bash
 curl -X POST /api/demo/reset
 ```
 
-Desde UI:
+From the UI:
 
-Usa el botón `Reiniciar datos`.
+Use the reset data action (`Reiniciar datos` in the current UI).
 
-## Cambiar los datos iniciales
+## Change Initial Data
 
-Edita `server/data/mockStore.js`.
+Edit `server/data/mockStore.js`.
 
-Recomendación:
+Recommendations:
 
-- Mantén IDs únicos.
-- Mantén `priceId` único por producto.
-- Usa estados compatibles: `Pendiente`, `Validado`, `Enviado`, `Entregado`, `Cancelado`, `Rechazado`.
-- Usa tipos compatibles: `COW/VACA`, `YB/ANOJO`.
+- Keep IDs unique.
+- Keep `priceId` unique per product.
+- Use compatible statuses: `Pendiente`, `Validado`, `Enviado`, `Entregado`, `Cancelado`, `Rechazado`.
+- Use compatible types: `COW/VACA`, `YB/ANOJO`.

@@ -1,14 +1,14 @@
-# Arquitectura
+# Architecture
 
-BNETIA Demo está organizada para parecerse a una aplicación de producción, pero sin depender de infraestructura externa.
+BNETIA Demo is organized to resemble a production application without requiring external infrastructure.
 
-## Vista general
+## Overview
 
 ```text
-Usuario
+User
   ↓
 Vue + Vuetify
-  ↓ fetch / api calls
+  ↓ fetch / API calls
 Vercel Rewrite /api/*
   ↓
 api/index.js
@@ -18,27 +18,27 @@ server/routes → server/middlewares → server/controllers → server/services/
 
 ## Frontend
 
-El frontend vive en `src/`.
+The frontend lives in `src/`.
 
-Archivos principales:
+Main files:
 
-- `src/main.ts`: crea la app Vue y registra Vuetify.
-- `src/App.vue`: interfaz completa de la demo.
-- `src/style.css`: estilos globales mínimos.
+- `src/main.ts`: creates the Vue app and registers Vuetify.
+- `src/App.vue`: complete demo interface.
+- `src/style.css`: minimal global styles.
 
-El frontend intenta cargar datos desde:
+The frontend attempts to load data from:
 
 ```text
 GET /api/demo/bootstrap
 ```
 
-Si la API no está disponible durante desarrollo local con Vite puro, usa semillas locales internas para que la demo siga funcionando.
+If the API is not available during plain Vite local development, the app falls back to local seed data so the demo remains usable.
 
 ## API
 
-La API usa Express. En Vercel la única función serverless es `api/index.js`; el resto de capas viven en `server/`.
+The API uses Express. On Vercel, the only serverless function is `api/index.js`; the rest of the backend layers live under `server/`.
 
-`api/index.js` registra:
+`api/index.js` registers:
 
 - `authRoutes`
 - `ordersRoutes`
@@ -49,105 +49,105 @@ La API usa Express. En Vercel la única función serverless es `api/index.js`; e
 - `aiOrderRoutes`
 - `demoRoutes`
 
-## Rutas
+## Routes
 
-Las rutas están en `server/routes/`.
+Routes live in `server/routes/`.
 
-Cada archivo agrupa un área funcional:
+Each file groups a functional area:
 
-- `authRoutes.js`: login, usuario actual y reset password.
-- `ordersRoutes.js`: pedidos de cliente/admin, creación, edición, confirmación y rechazo.
-- `productsRoutes.js`: catálogo, precios y subida de Excel demo.
-- `usersRoutes.js`: CRUD de usuarios.
-- `allowedPhonesRoutes.js`: teléfonos permitidos.
-- `whatsappRoutes.js`: estado del bot y procesamiento de mensajes.
-- `aiOrderRoutes.js`: endpoints mock relacionados con parsing IA.
-- `demoRoutes.js`: bootstrap/reset del estado mock.
+- `authRoutes.js`: login, current user, and password reset.
+- `ordersRoutes.js`: customer/admin orders, creation, editing, confirmation, and rejection.
+- `productsRoutes.js`: catalogue, prices, and demo Excel upload.
+- `usersRoutes.js`: user CRUD.
+- `allowedPhonesRoutes.js`: allowed WhatsApp phones.
+- `whatsappRoutes.js`: bot status and incoming message processing.
+- `aiOrderRoutes.js`: mock endpoints related to AI order parsing.
+- `demoRoutes.js`: mock state bootstrap/reset.
 
-## Controladores
+## Controllers
 
-Los controladores están en `server/controllers/`.
+Controllers live in `server/controllers/`.
 
-Su función es:
+Their role is to:
 
-- Recibir `req`.
-- Llamar a modelos o servicios.
-- Devolver JSON con forma similar al backend real.
+- Receive `req`.
+- Call models or services.
+- Return JSON shaped similarly to the real backend.
 
-No contienen acceso directo a base de datos.
+They do not access a database directly.
 
-## Modelos
+## Models
 
-Los modelos están en `server/models/`.
+Models live in `server/models/`.
 
-En producción serían responsables de hablar con MySQL o un ORM. En esta demo leen y modifican arrays en memoria desde:
+In production, these would talk to MySQL or an ORM. In this demo, they read and mutate in-memory arrays from:
 
 ```text
 server/data/mockStore.js
 ```
 
-Modelos incluidos:
+Included models:
 
 - `productModel.js`
 - `orderModel.js`
 - `userModel.js`
 - `allowedPhonesModel.js`
 
-## Servicios
+## Services
 
-Los servicios están en `server/services/`.
+Services live in `server/services/`.
 
-Simulan integraciones que en producción serían externas:
+They simulate integrations that would be external in production:
 
-- `aiOrderParserService.js`: interpreta un mensaje de WhatsApp y lo transforma en líneas de pedido.
-- `whatsappTransport.js`: simula sesión y envío de WhatsApp.
-- `priceExcelService.js`: simula procesamiento de un Excel de precios.
+- `aiOrderParserService.js`: interprets a WhatsApp message and turns it into order lines.
+- `whatsappTransport.js`: simulates WhatsApp session and message sending.
+- `priceExcelService.js`: simulates processing a price Excel file.
 
 ## Middlewares
 
-Los middlewares están en `server/middlewares/`.
+Middlewares live in `server/middlewares/`.
 
-- `authMiddleware.js`: inyecta un usuario admin demo.
-- `isAdmin`: protege rutas administrativas.
-- `errorHandler.js`: respuesta uniforme de errores.
+- `authMiddleware.js`: injects a demo admin user.
+- `isAdmin`: protects administrative routes.
+- `errorHandler.js`: standardizes error responses.
 
-## Estado en memoria
+## In-Memory State
 
-El estado vive en `server/data/mockStore.js`.
+State lives in `server/data/mockStore.js`.
 
-Incluye:
+It includes:
 
-- Productos.
-- Usuarios.
-- Pedidos.
-- Teléfonos permitidos.
-- Estado de WhatsApp.
+- Products.
+- Users.
+- Orders.
+- Allowed phones.
+- WhatsApp state.
 
-En un entorno serverless como Vercel, este estado puede reiniciarse entre ejecuciones. Para una demo esto es deseable porque evita persistencia accidental.
+In a serverless environment like Vercel, this state may reset between executions. For a public demo, that behavior is intentional because it avoids accidental persistence.
 
 ## Vercel Hobby
 
-Vercel cuenta los archivos dentro de `api/` como funciones serverless. Para no superar el límite del plan Hobby, esta demo deja solo:
+Vercel treats files inside `api/` as serverless functions. To avoid exceeding the Hobby plan function limit, this demo keeps only:
 
 ```text
 api/index.js
 ```
 
-El resto del backend mock vive en:
+The rest of the mock backend lives in:
 
 ```text
 server/
 ```
 
-Así se mantiene la estructura de producción sin crear más funciones.
+This preserves the production-like structure without creating additional functions.
 
-## Correspondencia con producción
+## Production Mapping
 
-| Producción | Demo |
+| Production | Demo |
 | --- | --- |
 | MySQL | `mockStore.js` |
-| JWT real | `authMiddleware.js` con admin demo |
+| Real JWT | `authMiddleware.js` with demo admin |
 | WhatsApp Web/Baileys | `whatsappTransport.js` |
-| OpenAI/parser real | `aiOrderParserService.js` |
-| Excel real de proveedor | `priceExcelService.js` |
-| API Express real | Express serverless en `api/index.js` |
+| OpenAI/real parser | `aiOrderParserService.js` |
+| Supplier Excel import | `priceExcelService.js` |
+| Real Express API | Serverless Express in `api/index.js` |

@@ -1,14 +1,14 @@
-# API Mock
+# Mock API
 
-La API mock expone endpoints parecidos al backend real, pero todos responden con datos ficticios.
+The mock API exposes endpoints similar to the real backend, but every response uses fictitious in-memory data.
 
-Base URL local si levantas Express manualmente:
+Local base URL if you run Express manually:
 
 ```text
 http://localhost:7099/api
 ```
 
-En Vercel:
+On Vercel:
 
 ```text
 /api
@@ -18,9 +18,9 @@ En Vercel:
 
 ### `GET /api/demo/bootstrap`
 
-Devuelve todo el estado actual.
+Returns the full current mock state.
 
-Respuesta:
+Response:
 
 ```json
 {
@@ -37,13 +37,13 @@ Respuesta:
 
 ### `POST /api/demo/reset`
 
-Reinicia el estado mock a los datos iniciales.
+Resets the mock state to its initial seed data.
 
 ## Auth
 
 ### `POST /api/auth/login`
 
-Devuelve un token ficticio y usuario admin.
+Returns a fictitious token and demo admin user.
 
 Body:
 
@@ -56,32 +56,32 @@ Body:
 
 ### `GET /api/auth/me`
 
-Devuelve el usuario admin demo.
+Returns the demo admin user.
 
 ### `PUT /api/auth/reset-password/:id`
 
-Simula reset de contraseña.
+Simulates a password reset.
 
 ## Products
 
 ### `GET /api/products`
 
-Devuelve productos planos.
+Returns flat product records.
 
 ### `GET /api/products/with-prices`
 
-Devuelve productos con estructura de precios parecida al backend real.
+Returns products using a price structure similar to the real backend.
 
 ### `POST /api/products`
 
-Crea un producto mock.
+Creates a mock product.
 
 Body:
 
 ```json
 {
   "name": "Entrecot",
-  "description": "Caja demo",
+  "description": "Demo box",
   "type": "COW/VACA",
   "price": 12.5
 }
@@ -89,11 +89,11 @@ Body:
 
 ### `PUT /api/products/:id`
 
-Actualiza un producto mock.
+Updates a mock product.
 
 ### `PUT /api/products/price/:product_price_id`
 
-Actualiza el precio por `product_price_id`.
+Updates a price by `product_price_id`.
 
 Body:
 
@@ -105,29 +105,29 @@ Body:
 
 ### `DELETE /api/products/:id`
 
-Elimina un producto mock.
+Deletes a mock product.
 
 ### `POST /api/products/upload-prices`
 
-Simula la subida de un Excel y recalcula precios en memoria.
+Simulates an Excel upload and recalculates prices in memory.
 
 ## Orders
 
 ### `GET /api/orders`
 
-Devuelve pedidos mock.
+Returns mock orders.
 
 ### `GET /api/orders/admin`
 
-Devuelve todos los pedidos para admin.
+Returns all orders for admin.
 
 ### `GET /api/orders/pending-validation`
 
-Devuelve pedidos pendientes.
+Returns pending orders.
 
 ### `POST /api/orders`
 
-Crea un pedido mock.
+Creates a mock order.
 
 Body:
 
@@ -151,13 +151,13 @@ Body:
 
 ### `PUT /api/orders/:id`
 
-Actualiza estado, precio, transporte o semana.
+Updates status, price, transport, or week number.
 
 ### `PUT /api/orders/:id/confirm`
 
-Valida un pedido.
+Validates an order.
 
-Body opcional:
+Optional body:
 
 ```json
 {
@@ -167,60 +167,60 @@ Body opcional:
 
 ### `PUT /api/orders/:id/reject`
 
-Rechaza un pedido.
+Rejects an order.
 
 ### `DELETE /api/orders/:id`
 
-Cancela un pedido.
+Cancels an order.
 
 ## Users
 
 ### `GET /api/users`
 
-Lista usuarios.
+Lists users.
 
 ### `POST /api/users`
 
-Crea usuario.
+Creates a user.
 
 ### `GET /api/users/:id`
 
-Obtiene usuario.
+Returns a user.
 
 ### `PUT /api/users/:id`
 
-Actualiza usuario.
+Updates a user.
 
 ### `DELETE /api/users/:id`
 
-Elimina usuario.
+Deletes a user.
 
 ## Allowed Phones
 
 ### `GET /api/admin/phones`
 
-Lista teléfonos permitidos.
+Lists allowed phones.
 
 ### `POST /api/admin/phones`
 
-Crea teléfono permitido.
+Creates an allowed phone.
 
 Body:
 
 ```json
 {
   "phone_number": "+34600111203",
-  "phone_name": "Cliente demo"
+  "phone_name": "Demo customer"
 }
 ```
 
 ### `PUT /api/admin/phones/:id`
 
-Actualiza teléfono.
+Updates a phone.
 
 ### `PATCH /api/admin/phones/:id/toggle`
 
-Activa o desactiva teléfono.
+Activates or deactivates a phone.
 
 Body:
 
@@ -232,41 +232,41 @@ Body:
 
 ### `DELETE /api/admin/phones/:id`
 
-Elimina teléfono.
+Deletes a phone.
 
 ## WhatsApp
 
 ### `GET /api/whatsapp/admin/config`
 
-Devuelve configuración mock.
+Returns mock configuration.
 
 ### `POST /api/whatsapp/admin/config`
 
-Actualiza configuración mock.
+Updates mock configuration.
 
 ### `GET /api/whatsapp/admin/baileys/status`
 
-Devuelve estado de sesión.
+Returns session status.
 
 ### `POST /api/whatsapp/admin/baileys/start`
 
-Simula inicio de sesión.
+Simulates session start.
 
 ### `POST /api/whatsapp/admin/baileys/stop`
 
-Simula parada de sesión.
+Simulates session stop.
 
 ### `POST /api/whatsapp/demo/process-message`
 
-Simula recepción de mensaje de WhatsApp y crea pedido pendiente.
+Simulates receiving a WhatsApp message and creates a pending order.
 
 Body:
 
 ```json
 {
   "wa_id": "+34600111203",
-  "wa_name": "Cliente Demo",
-  "message": "semana 26: 30 cajas solomillo +2,4 vaca, 18 cajas morcillo anojo"
+  "wa_name": "Demo Customer",
+  "message": "week 26: 30 boxes solomillo +2,4 cow, 18 boxes morcillo yearling"
 }
 ```
 
@@ -274,8 +274,8 @@ Body:
 
 ### `GET /api/ai-orders/pending`
 
-Devuelve pedidos pendientes.
+Returns pending orders.
 
 ### `POST /api/ai-orders/parse`
 
-Alias demo para simular parsing de mensaje.
+Demo alias for message parsing.

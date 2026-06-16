@@ -1,8 +1,8 @@
 # Case Study / Interview Answer
 
-Este documento está pensado para contextualizar el proyecto cuando alguien revise el repositorio desde un proceso de selección.
+This document provides context for reviewers looking at the repository during an interview process.
 
-## Respuesta de 3 líneas
+## 3-Line Answer
 
 ```text
 BNETIA Orders Platform — public demo of a production client app: [repo link] / [live demo link]
@@ -10,60 +10,60 @@ It manages B2B meat orders end-to-end: product catalogue, cart, admin validation
 I built the Vue/Vuetify frontend and Express-style backend architecture; the hardest technical decision was turning the real DB/WhatsApp-dependent system into a safe public Vercel demo while preserving the production routes, controllers, services and models.
 ```
 
-## Contexto
+## Context
 
-BNETIA es una aplicación de pedidos mayoristas desarrollada para un cliente y actualmente planteada como sistema de producción.
+BNETIA is a wholesale ordering application developed for a client and currently used as a production system.
 
-El sistema real gestiona flujos como:
+The real system manages workflows such as:
 
-- Clientes que hacen pedidos desde panel.
-- Administración que valida pedidos.
-- Catálogo de productos y precios.
-- Actualización de precios mediante Excel.
-- Usuarios y roles.
-- Teléfonos permitidos para el canal de WhatsApp.
-- Entrada de pedidos por WhatsApp asistida por parsing/IA.
+- Customers placing orders from a panel.
+- Admin users validating orders.
+- Product catalogue and prices.
+- Price updates through Excel uploads.
+- Users and roles.
+- Allowed phones for the WhatsApp channel.
+- WhatsApp order intake assisted by parsing/AI.
 
-Este repositorio no expone datos reales ni credenciales. Es una demo pública que reproduce el flujo y la arquitectura con datos ficticios.
+This repository does not expose real data or credentials. It is a public demo that reproduces the workflow and architecture with fictitious data.
 
-## Qué hace la demo
+## What the Demo Does
 
-La demo permite probar el flujo completo:
+The demo lets reviewers test the full workflow:
 
-- Crear pedidos desde un catálogo.
-- Filtrar y revisar pedidos.
-- Validar, rechazar o editar precios desde administración.
-- Gestionar productos.
-- Simular carga de Excel para actualizar precios.
-- Exportar pedidos a Excel.
-- Gestionar usuarios.
-- Gestionar teléfonos permitidos.
-- Simular una sesión de WhatsApp.
-- Procesar un mensaje entrante y convertirlo en pedido pendiente.
+- Create orders from a catalogue.
+- Filter and review orders.
+- Validate, reject, or edit prices from the admin panel.
+- Manage products.
+- Simulate Excel upload for price updates.
+- Export orders to Excel.
+- Manage users.
+- Manage allowed phones.
+- Simulate a WhatsApp session.
+- Process an incoming message and turn it into a pending order.
 
-## Mi rol
+## My Role
 
-Mi rol cubrió el desarrollo de la aplicación full-stack:
+My role covered full-stack development of the application:
 
-- Construcción del frontend en Vue 3 y Vuetify.
-- Diseño de vistas de pedidos, catálogo, administración y configuración.
-- Implementación de una API estilo Express con rutas, controladores, modelos, servicios y middlewares.
-- Integración del flujo de pedidos, productos, usuarios, precios, validaciones y WhatsApp.
-- Preparación de una demo pública segura para Vercel.
+- Building the frontend with Vue 3 and Vuetify.
+- Designing order, catalogue, admin, and configuration views.
+- Implementing an Express-style API with routes, controllers, models, services, and middlewares.
+- Integrating order, product, user, price, validation, and WhatsApp-related flows.
+- Preparing a safe public demo for Vercel.
 
-## Decisión técnica más difícil
+## Hardest Technical Decision
 
-La decisión técnica más delicada fue convertir una aplicación dependiente de servicios reales en una demo pública segura sin que dejara de parecer el sistema real.
+The most delicate technical decision was turning a service-dependent application into a safe public demo without making it feel disconnected from the real system.
 
-El sistema original depende de elementos que no deben exponerse públicamente:
+The original system depends on elements that should not be exposed publicly:
 
-- Base de datos.
-- Credenciales.
-- Sesión de WhatsApp.
-- Datos de clientes.
-- Flujos internos de producción.
+- Database.
+- Credentials.
+- WhatsApp session.
+- Client data.
+- Internal production flows.
 
-Para resolverlo, la demo mantiene la arquitectura visible:
+To solve this, the demo keeps the architecture visible:
 
 ```text
 api/index.js
@@ -75,56 +75,56 @@ server/middlewares
 server/data/mockStore.js
 ```
 
-Pero sustituye las dependencias reales por mock data en memoria.
+But replaces real dependencies with in-memory mock data.
 
-Además, para desplegar en Vercel Hobby, fue necesario dejar una única Serverless Function:
+For Vercel Hobby deployment, it was also necessary to keep a single Serverless Function:
 
 ```text
 api/index.js
 ```
 
-El resto del backend vive en `server/`, de forma que Vercel no cree una función por cada archivo, pero el proyecto siga mostrando una organización cercana a producción.
+The rest of the backend lives in `server/`, so Vercel does not create a separate function for every file while the project still shows an organization close to production.
 
-## Por qué no usa datos reales
+## Why It Does Not Use Real Data
 
-Esta demo está pensada para ser pública. Por eso:
+This demo is meant to be public. Therefore:
 
-- No usa base de datos real.
-- No incluye secretos.
-- No conecta con WhatsApp real.
-- No muestra clientes reales.
-- No persiste información sensible.
+- It does not use the real database.
+- It does not include secrets.
+- It does not connect to real WhatsApp.
+- It does not show real clients.
+- It does not persist sensitive information.
 
-La intención es enseñar criterio técnico, arquitectura y experiencia de producto sin comprometer información privada.
+The intention is to demonstrate technical judgment, architecture, and product experience without compromising private information.
 
-## Cómo explicarlo en entrevista
+## How to Explain It in an Interview
 
-Una forma natural de explicarlo:
+A natural way to explain it:
 
 > This is a public demo of a real client ordering platform. The production version uses real persistence and integrations, but this repo replaces them with mock data so the whole flow can be tested safely. I kept the production-like architecture because I wanted reviewers to see not only the UI, but also how I organize routes, controllers, services, models and deployment constraints.
 
-## Qué mirar en el repositorio
+## What to Look At
 
-Archivos recomendados:
+Recommended files:
 
-- `src/App.vue`: experiencia principal de la demo.
-- `api/index.js`: única entrada serverless para Vercel.
-- `server/routes`: definición de endpoints.
-- `server/controllers`: lógica HTTP.
-- `server/models`: acceso a datos mock.
-- `server/services`: simulaciones de WhatsApp, IA y Excel.
-- `server/data/mockStore.js`: datos ficticios iniciales.
+- `src/App.vue`: main demo experience.
+- `api/index.js`: single Vercel serverless entrypoint.
+- `server/routes`: endpoint definitions.
+- `server/controllers`: HTTP logic.
+- `server/models`: mock data access.
+- `server/services`: WhatsApp, AI, and Excel simulations.
+- `server/data/mockStore.js`: initial fictitious data.
 
-## Limitaciones de la demo
+## Demo Limitations
 
-La demo no pretende sustituir producción.
+The demo is not intended to replace production.
 
-Limitaciones conocidas:
+Known limitations:
 
-- El estado es en memoria.
-- Los datos pueden reiniciarse.
-- WhatsApp es simulado.
-- La IA/parsing es mock.
-- La autenticación es demo.
+- State is in memory.
+- Data can reset.
+- WhatsApp is simulated.
+- AI/parsing is mocked.
+- Authentication is demo-only.
 
-Estas limitaciones son intencionadas para que el proyecto sea seguro y fácil de desplegar públicamente.
+These limitations are intentional so the project remains safe and easy to deploy publicly.
